@@ -1,6 +1,6 @@
 import axiosInstance from "../User/axios";
 
-
+// api call to fetch users
 export const getUsers =async(page =1,limit=5)=>{
     try{
         const response =await axiosInstance.get(`/admin/users?page=${page}&limit=${limit}`,{withCredentials:true});
@@ -10,7 +10,7 @@ export const getUsers =async(page =1,limit=5)=>{
     }
 }
 
-
+//api call to edit user
 export const editUser=async(id)=>{
     console.log("api is calling")
     try{

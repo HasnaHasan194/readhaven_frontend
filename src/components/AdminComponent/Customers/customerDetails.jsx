@@ -90,7 +90,7 @@ const CustomerDetails = () => {
                                     <TableCell className="text-center">
                                     <ConfirmSwitch
                                         checked={customer.isBlocked}
-                                        name={customer.name}
+                                        name={customer.firstName}
                                         onToggle={() => toggleBlockStatus(customer._id)} 
                                     />
                                 </TableCell>

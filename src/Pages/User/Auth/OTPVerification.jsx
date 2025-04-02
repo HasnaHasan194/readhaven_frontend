@@ -123,7 +123,6 @@ const OTPVerificationForm = () => {
   
         if (Object.keys(formData).length > 0) {
           response = await verifyOTPAndCreateUser({ email, otp: otpValue });
-          toast.success(response.message)
         }
         else{
           response = await forgotVerifyOtp({email,otp});
@@ -147,6 +146,7 @@ const OTPVerificationForm = () => {
         setLoading(false);
       }
     };
+   
     return (
       <div className="fixed inset-0 bg-gray-100">
         <div className="flex flex-col items-center justify-center min-h-screen p-4">

@@ -32,16 +32,23 @@ const BestSellers = () => {
       {/* Grid of Products */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ml-32">
       {products.map((product, index) => (
+        <div
+        key={product._id}
+        onClick={() => navigate(`/product-detail/${product._id}`)}
+        className="cursor-pointer"
+      >
         <BookProductCard 
           key={index}
+          id={product._id}
           name={product.name}
           rating={product.rating || 4.5}
           price={product.regularPrice}
           image={product.productImages[0]}
           author={product.author || "Unknown"}
           availability={product.availableQuantity}
-          onClick={() => navigate(`/product-detail/${product._id}`)}
+        
         />
+          </div>
       ))}
     </div>
 

@@ -1,4 +1,4 @@
-import { addCategory,getCategory,blockCategory,editCategory } from "@/api/Admin/categoryApi.js";
+import { addCategory,getCategory,blockCategory,editCategory, addOffer } from "@/api/Admin/categoryApi.js";
 import React,{ createContext,useContext,useEffect,useState} from "react";
 import { toast } from "react-toastify";
 
@@ -70,6 +70,24 @@ export const CategoryProvider=({children})=>{
         }
     }
 
+    //add offer
+    const offerAdd = async(id,offer) =>{
+        try{
+            const response = await addOffer(id,offer);
+
+            toast.success(response.message);
+
+            await fetchCategories()
+        }
+        catch(error){
+           console.log("error adding offer",error);
+           toast.error("error updating offer")
+        }
+     }
+
+     //edit offer
+     
+
     useEffect(()=>{
         fetchCategories()
     },[]);
@@ -81,7 +99,8 @@ export const CategoryProvider=({children})=>{
             loading,
             addNewCategory,
             blockOrUnblockCategory,
-            categoryEdit
+            categoryEdit,
+            offerAdd
         }}>{children}
 
         </CategoryContext.Provider>

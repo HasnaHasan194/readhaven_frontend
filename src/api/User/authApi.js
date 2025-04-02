@@ -21,6 +21,18 @@ export const verifyOTPAndCreateUser = async({email,otp}) => {
     }
     
 }
+
+//api call to verify the new otp
+export const verifyTheNewOtp = async({email,otp}) => {
+    try{
+        const response = await axiosInstance.post('/users/new/verify-otp', {email, otp}) ;
+        return response.data;
+    }
+    catch(error){
+        throw error?.response?.data || error;
+    }
+    
+}
 //api call to resend the otp
 export const resendOTP = async({email,formData}) =>{
     try{
@@ -66,6 +78,18 @@ export const logout=async()=>{
 export const forgotVerifyEmail = async({email}) => {
     try{
         const response = await axiosInstance.post('/users/forgot/verify-email',{email}) ;
+        return response.data;
+    }
+    catch(error){
+        console.error("OTP Send Error:", error.response?.data || error.message);
+        throw error?.response?.data || error ;
+    }
+}
+
+// api call to verify the new email
+export const VerifyNewEmail = async({email}) => {
+    try{
+        const response = await axiosInstance.post('/users/new/verify-email',{email}) ;
         return response.data;
     }
     catch(error){

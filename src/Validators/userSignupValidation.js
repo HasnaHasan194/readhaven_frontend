@@ -33,12 +33,11 @@ const userSchema = Joi.object({
       "string.email": "Invalid email format.",
       "string.empty": "Email is required."
     }),
-
-  phone: Joi.string()
-    .pattern(/^[0-9]{10,}$/)
+    phone: Joi.string()
+    .pattern(/^[0-9]{10}$/)
     .required()
     .messages({
-      "string.pattern.base": "Phone number must be at least 10 digits.",
+      "string.pattern.base": "Phone number must be exactly 10 digits.",
       "string.empty": "Phone number is required."
     }),
 
@@ -62,7 +61,7 @@ const userSchema = Joi.object({
       "any.only": "Confirm password must match the password.",
       "string.empty": "Confirm password is required."
     })
-});
+}).unknown(true);;
 
 //validate user login
 const loginSchema = Joi.object({

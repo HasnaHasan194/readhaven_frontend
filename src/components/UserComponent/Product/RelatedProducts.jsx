@@ -59,6 +59,7 @@ const RelatedProduct = ({ categoryId, currentProductId }) => {
             className="cursor-pointer"
           >
             <BookProductCard
+              id={product._id}
               name={product.name}
               rating={product.rating || 4.5}
               price={product.regularPrice}

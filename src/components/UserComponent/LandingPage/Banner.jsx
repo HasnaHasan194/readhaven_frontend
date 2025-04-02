@@ -7,7 +7,7 @@ const BookBannerCarousel = () => {
   const navigate = useNavigate();
   const slides = [
     {
-      image: "/a colorful and stylish banner for an e-commerce book website named READ HAVEN, with full-width nude shades and attractive book pictures, without a Shop Now option.png",
+      image: "ben-white-7BiMECHFgFY-unsplash.jpg",
       quote: "Every book is a new journey waiting to unfold.",
   
     },
