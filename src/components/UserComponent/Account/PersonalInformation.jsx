@@ -306,7 +306,7 @@ const PersonalInformation = () => {
 
   const shareReferralLink = () => {
     const referralCode = userDetails.referralCode;
-    const referralLink = `http://localhost:5173/signup?ref=${referralCode}`;
+    const referralLink = `https://readhaven-frontend.vercel.app//signup?ref=${referralCode}`;
 
     if (navigator.share) {
       navigator
