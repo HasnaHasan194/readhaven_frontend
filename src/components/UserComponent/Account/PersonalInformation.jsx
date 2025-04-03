@@ -288,8 +288,8 @@ const PersonalInformation = () => {
 
   const copyReferralLink = () => {
     const referralCode = userDetails.referralCode;
-    const referralLink = `http://localhost:5173/signup?ref=${referralCode}`;
-    console.log("sjdhfiu",referralLink)
+    const referralLink = `https://readhaven-frontend.vercel.app/signup?ref=${referralCode}`;
+    console.log("sjdhfiu", referralLink);
 
     navigator.clipboard
       .writeText(referralLink)
@@ -579,7 +579,7 @@ const PersonalInformation = () => {
             </label>
             <div className="flex items-center bg-black/20 rounded-lg p-3 break-all">
               <span className="text-sm truncate flex-1 font-mono">
-                http://localhost:5173/signup?ref=
+                https://readhaven-frontend.vercel.app/signup?ref=
                 {userDetails.referralCode || userDetails._id || "USER123"}
               </span>
               <button
