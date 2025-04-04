@@ -83,7 +83,7 @@ const AllProducts = () => {
   // Separate effect for handling page changes
   // This prevents resetting to page 1 when just changing pages
   useEffect(() => {
-    if (currentPage > 1) {
+    if (currentPage >= 1) {
       fetchAllProducts(currentPage, debouncedSearch, filters, sortOption);
     }
   }, [currentPage]);
