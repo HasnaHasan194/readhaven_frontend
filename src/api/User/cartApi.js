@@ -20,8 +20,8 @@ export const updateCartItemQuantity = async (itemId, change) => {
     });
     return response.data;
   } catch (error) {
-    
-    throw error?.response?.data || error;
+    console.log('clog from cart api=> ', error)
+    throw error
   }
 };
 //API call to remove the item from the cart
