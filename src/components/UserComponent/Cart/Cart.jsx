@@ -41,8 +41,8 @@ const ShoppingCart = () => {
         )
       );
     } catch (error) {
-      console.log(error?.message);
-      toast.error(error?.message || "Failed to update the quantity");
+      console.log(error);
+      toast.error(error?.response?.data?.message || "Failed to update the quantity");
     }
   };
 

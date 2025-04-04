@@ -20,6 +20,7 @@ export const updateCartItemQuantity = async (itemId, change) => {
     });
     return response.data;
   } catch (error) {
+    
     throw error?.response?.data || error;
   }
 };
