@@ -1,6 +1,7 @@
 import {getCoupons,addCoupon} from '@/api/Admin/couponApi.js'
 import { validateCoupon } from "@/Validators/couponValidation";
 import React ,{useState} from 'react';
+import { toast } from 'react-toastify';
 
 const AddCoupon = () => {
   const [couponData, setCouponData] = useState({
@@ -16,7 +17,8 @@ const AddCoupon = () => {
   const [loading, setLoading] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
   const [notificationType, setNotificationType] = useState('');
-  
+  const [couponError , setCouponError] = useState("")
+
   const generateCouponCode = () => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let randomCode = "";
@@ -36,6 +38,11 @@ const AddCoupon = () => {
       ...couponData,
       [name]: value
     });
+
+        // Clear error for the field being edited
+        if (errors[name]) {
+          setErrors((prev) => ({ ...prev, [name]: "" }));
+        }
   };
 
   const showNotification = (type, message) => {
@@ -65,6 +72,20 @@ const AddCoupon = () => {
     }
 
     try {
+      if(couponData.discountType === "percentage" && couponData.discountValue >85){
+         const discountError = "Discount value must be less than 85%"
+         toast.error(discountError)
+         setCouponError(discountError)
+         return
+      }
+
+      if(couponData.discountType==="amount" && couponData.discountValue>=couponData.minimumPurchase){
+        const discountError = "Discount value must be less than minimum purchase"
+        toast.error(discountError)
+        setCouponError(discountError)
+        return
+      }
+
       const response = await addCoupon(couponData);
       showNotification('success', response.message);
   
@@ -82,8 +103,11 @@ const AddCoupon = () => {
       showNotification('error', error?.message || "Failed to add coupon");
       console.error("Error in adding coupon", error);
     }
+    finally{
+      setLoading(false);
+    }
   
-    setLoading(false); // Ensure loading state is reset
+   
   };
   
   return (
@@ -168,6 +192,7 @@ const AddCoupon = () => {
                     {couponData.discountType === 'percentage' ? '%' : '$'}
                   </span>
                   {errors.discountValue && <p className="text-red-500 text-sm">{errors.discountValue}</p>}
+                  {couponError && <p className='text-red-500 text-sm'>{couponError}</p>}
                 </div>
               </div>
 
