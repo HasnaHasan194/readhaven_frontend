@@ -11,7 +11,7 @@ import { validateUser } from "@/Validators/userSignupValidation";
 import { Eye, EyeOff, Gift } from "lucide-react";
 import { toast } from "react-toastify";
 import AuthLayout from "@/Pages/User/Auth/AuthLayout";
-
+import GoogleAuthButton from "@/components/UserComponent/Login/GoogleAuthButton";
 export default function Signup() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -233,6 +233,11 @@ export default function Signup() {
               {loading ? "Signing Up..." : "Sign Up"}
             </Button>
           </form>
+          
+          <div className="mt-6 flex flex-col items-center gap-6">
+            <GoogleAuthButton />
+          </div>
+          
           <p className="mt-3 text-center text-xs text-gray-600">
             Already have an account?{" "}
             <Link to="/login" className="text-blue-600 cursor-pointer">
