@@ -43,6 +43,9 @@ const AddCoupon = () => {
         if (errors[name]) {
           setErrors((prev) => ({ ...prev, [name]: "" }));
         }
+        if(couponError){
+          setCouponError("")
+        }
   };
 
   const showNotification = (type, message) => {
