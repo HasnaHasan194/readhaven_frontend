@@ -75,15 +75,15 @@ const AddCoupon = () => {
     }
 
     try {
-      if(couponData.discountType === "percentage" && couponData.discountValue >85){
-         const discountError = "Discount value must be less than 85%"
+      if(couponData.discountType === "percentage" && (couponData.discountValue >85 || couponData.discountValue<=0)){
+         const discountError = "Discount value must be greater than 0 and  less than 85%"
          toast.error(discountError)
          setCouponError(discountError)
          return
       }
 
-      if(couponData.discountType==="amount" && couponData.discountValue>=couponData.minimumPurchase){
-        const discountError = "Discount value must be less than minimum purchase"
+      if(couponData.discountType==="amount" && (couponData.discountValue>=couponData.minimumPurchase || couponData.discountValue <=0)){
+        const discountError = "Discount value must be greater than 0 and  less than minimum purchase"
         toast.error(discountError)
         setCouponError(discountError)
         return
