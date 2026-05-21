@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BookProductCard from "./ProductCard";
 import { getProducts } from "@/api/User/productApi";
+import { getCategories } from "@/api/User/categoryApi";
 import { useDebounce } from "use-debounce";
 import {
   Search,
@@ -33,7 +34,7 @@ const AllProducts = () => {
   const navigate = useNavigate();
 
   const languages = ["English", "Malayalam", "Hindi", "Tamil"];
-  const categories = ["Romance", "Humour", "Story", "Novel", "Fantasy"];
+  const [categories, setCategories] = useState([]);
   const priceRanges = [
     { label: "Under ₹200", value: "0-200" },
     { label: "₹200 - ₹500", value: "200-500" },
@@ -72,6 +73,18 @@ const AllProducts = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await getCategories();
+        setCategories(response.categories || []);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   // Effect that runs when debounced search value changes
   useEffect(() => {
@@ -284,8 +297,8 @@ const AllProducts = () => {
                   >
                     <option value="">All Categories</option>
                     {categories.map((cat) => (
-                      <option key={cat} value={cat}>
-                        {cat}
+                      <option key={cat._id} value={cat.name}>
+                        {cat.name}
                       </option>
                     ))}
                   </select>
@@ -534,7 +547,7 @@ const AllProducts = () => {
                                 ? "In Stock"
                                 : "Out of Stock"
                             }
-                            Category={product.Category.name}
+                            Category={product.Category?.name ?? "Uncategorized"}
                           />
                         </div>
                       ))}
