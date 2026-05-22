@@ -502,19 +502,22 @@ const ItemOrderDetails = () => {
       {order.itemDetails.status === "Cancelled" && (
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mt-8">
           <h2 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2">
-            Refund Information
+            Cancellation Information
           </h2>
-          <p className="text-sm text-gray-600">
-            Refund Amount: {formatCurrency(refundAmount)}
-          </p>
-          {order.itemDetails.refundStatus === "Approved" ? (
-            <p className="text-sm text-green-600 mt-2">
-              The amount has been credited to your wallet.
-            </p>
+          {order.paymentStatus?.toLowerCase() === "paid" &&
+          order.itemDetails.refundStatus === "Approved" ? (
+            <>
+              <p className="text-sm text-gray-600">
+                Refund Amount: {formatCurrency(refundAmount)}
+              </p>
+              <p className="text-sm text-green-600 mt-2">
+                The amount has been credited to your wallet.
+              </p>
+            </>
           ) : (
-            <p className="text-sm text-orange-600 mt-2">
-              Your refund request is pending. The amount will be refunded within
-              3 days after admin approval.
+            <p className="text-sm text-gray-600">
+              Your order item has been cancelled. No payment was collected, so no
+              refund was issued.
             </p>
           )}
         </div>
