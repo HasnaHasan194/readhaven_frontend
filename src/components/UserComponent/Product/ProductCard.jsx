@@ -23,18 +23,35 @@ const BookProductCard = ({
   const [isDiscountVisible, setIsDiscountVisible] = useState(false);
   const { mutate: addToCart } = useCartMutation();
 
-    // function to add product to the cart
-    const handleAddToCart = async () => {
-      const payLoad = {
-         productId : id,
-      };
-      addToCart(payLoad, {
-        onSuccess: (data) => toast.success(data.message),
-        onError: (error) => toast.error(error?.response.data.message),
-      });
+  const stockCount =
+    typeof availability === "number"
+      ? availability
+      : availability === "In Stock"
+        ? 1
+        : availability === "Out of Stock"
+          ? 0
+          : Number(availability) || 0;
+
+  const availabilityLabel = stockCount > 0 ? "In Stock" : "Out of Stock";
+  const inStock = stockCount > 0;
+
+  const handleAddToCart = async () => {
+    if (!inStock) {
+      toast.error("This product is out of stock");
+      return;
+    }
+    const payLoad = {
+      productId: id,
     };
-  
-  
+    addToCart(payLoad, {
+      onSuccess: (data) => toast.success(data.message),
+      onError: (error) =>
+        toast.error(
+          error?.response?.data?.message || "Failed to add to cart"
+        ),
+    });
+  };
+
   // Calculate discount percentage
   const discountPercentage = price && salePrice ? Math.round((price - salePrice) / price * 100) : 0;
   const hasDiscount = salePrice && salePrice < price;
@@ -150,11 +167,11 @@ const BookProductCard = ({
             )}
           </div>
           <span className={`px-3 py-1 rounded-full text-xs font-semibold shadow-sm ${
-            availability === 'In Stock' 
+            inStock
               ? 'bg-brown-100 text-brown-700' 
               : 'bg-rose-100 text-rose-700'
           }`}>
-            {availability}
+            {availabilityLabel}
           </span>
         </div>
 

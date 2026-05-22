@@ -41,12 +41,19 @@ const BookProductDetails = () => {
 
   // function to add product to the cart
   const handleAddToCart = async () => {
+    if (!product?.availableQuantity || product.availableQuantity < 1) {
+      toast.error("This product is out of stock");
+      return;
+    }
     const payLoad = {
       productId: id,
     };
     addToCart(payLoad, {
       onSuccess: (data) => toast.success(data.message),
-      onError: (error) => toast.error(error?.response.data.message),
+      onError: (error) =>
+        toast.error(
+          error?.response?.data?.message || "Failed to add to cart"
+        ),
     });
   };
 
