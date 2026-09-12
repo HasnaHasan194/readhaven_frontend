@@ -10,7 +10,8 @@ import {
   AlertCircle,
   X,
   CheckCircle,
-  AlertTriangle
+  AlertTriangle,
+  Edit
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -292,12 +293,15 @@ export default function CouponList() {
                     </th>
                     <th className="text-left p-4 font-medium text-slate-700">Status</th>
                     <th className="text-center p-4 font-medium text-slate-700">Enable</th>
+                    <th className="text-center p-4 font-medium text-slate-700">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200">
-                  {filteredCoupons.map((coupon, index) => (
+                  {filteredCoupons.map((coupon, index) => {
+                    const isExpiredCoupon = new Date(coupon.expiryDate) < new Date();
+                    return (
                     <tr
-                      key={coupon.id || index}
+                      key={coupon._id || coupon.id || index}
                       className={`hover:bg-slate-50 transition-colors ${!coupon.isActive ? "opacity-70" : ""}`}
                     >
                       <td className="p-4 text-slate-600">{index + 1}</td>
@@ -312,7 +316,7 @@ export default function CouponList() {
                           className={`flex items-center ${
                             isExpiringSoon(coupon.expiryDate)
                               ? "text-amber-600 font-medium"
-                              : new Date(coupon.expiryDate) < new Date()
+                              : isExpiredCoupon
                                 ? "text-red-600"
                                 : "text-slate-600"
                           }`}
@@ -331,11 +335,25 @@ export default function CouponList() {
                           className="data-[state=checked]:bg-green-500"
                         />
                       </td>
+                      <td className="p-4 text-center">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          disabled={isExpiredCoupon}
+                          onClick={() => navigate(`/admin/edit/coupon/${coupon._id}`)}
+                          title={isExpiredCoupon ? "Cannot edit expired coupon" : "Edit coupon"}
+                          className="h-8 px-3 text-xs flex items-center gap-1 mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          <Edit className="h-3.5 w-3.5" />
+                          Edit
+                        </Button>
+                      </td>
                     </tr>
-                  ))}
+                  );
+                  })}
                   {filteredCoupons.length === 0 && (
                     <tr>
-                      <td colSpan="8" className="p-8 text-center text-muted-foreground">
+                      <td colSpan="9" className="p-8 text-center text-muted-foreground">
                         <div className="flex flex-col items-center gap-2 py-8">
                           <Search className="h-10 w-10 text-slate-300" />
                           <p className="text-lg font-medium text-slate-700">No coupons found</p>

@@ -32,3 +32,23 @@ export const blockCoupon = async(id) => {
         throw error?.response?.data || error
     }
 }
+
+//API call to get coupon by id
+export const getCouponById = async(id) => {
+    try {
+        const response = await axiosInstance.get(`/admin/coupon/${id}`);
+        return response.data;
+    } catch(error) {
+        throw error?.response?.data || error;
+    }
+}
+
+//API call to edit coupon
+export const editCoupon = async(id, data) => {
+    try {
+        const response = await axiosInstance.put(`/admin/coupon/edit/${id}`, data);
+        return response.data;
+    } catch(error) {
+        throw error?.response?.data || error;
+    }
+}

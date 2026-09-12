@@ -38,9 +38,10 @@ const productValidationSchema = Joi.object({
     "any.required": "Regular price is required.",
   }),
 
-  productOffer: Joi.number().optional().min(0).messages({
+  productOffer: Joi.number().optional().min(0).less(80).messages({
     "number.base": "Product offer must be a number.",
     "number.min": "Product offer must be greater than or equal to 0.",
+    "number.less": "Product offer must be less than 80%.",
   }),
 
   description: Joi.string().required().messages({

@@ -9,6 +9,7 @@ import AdminLoginPrivate from "./ProtectedRouting/Admin/AdminLoginPrivate.jsx";
 import AdminPrivate from "./ProtectedRouting/Admin/AdminPrivate.jsx";
 import OrderListPage from "@/Pages/Admin/OrderListPage/OrderListPage.jsx";
 import AddCouponPage from "@/Pages/Admin/CouponPage/AddCouponPage.jsx";
+import EditCouponPage from "@/Pages/Admin/CouponPage/EditCouponPage.jsx";
 import CouponList from "@/components/AdminComponent/Coupon/CouponList.jsx";
 import OrderDetailsPage from "@/Pages/Admin/OrderListPage/OrderDetailsPage.jsx";
 import EditProductPage from "@/Pages/Admin/Product/EditProductPage.jsx";
@@ -30,6 +31,7 @@ const AdminRoute=()=>{
             <Route path="/orders" element={<AdminPrivate><OrderListPage/></AdminPrivate>}/>
             <Route path="/orders/:orderId" element={<AdminPrivate><OrderDetailsPage  /></AdminPrivate>}/>
             <Route path="/add/coupon" element={<AdminPrivate><AddCouponPage/></AdminPrivate>}/>
+            <Route path="/edit/coupon/:id" element={<AdminPrivate><EditCouponPage/></AdminPrivate>}/>
             <Route path="/coupon" element={<AdminPrivate><CouponListPage/></AdminPrivate>}/>
             <Route path="/sales-report" element={<AdminPrivate><SalesPage /></AdminPrivate>}/>
             <Route path="/dashboard" element={<AdminPrivate><DashboardpPage/></AdminPrivate>}/>

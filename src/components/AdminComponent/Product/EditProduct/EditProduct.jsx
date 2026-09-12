@@ -48,9 +48,10 @@ const productValidationSchema = Joi.object({
     "number.min": "Regular price must be greater than or equal to 0.",
     "any.required": "Regular price is required.",
   }),
-  productOffer: Joi.number().optional().min(0).messages({
+  productOffer: Joi.number().optional().min(0).less(80).messages({
     "number.base": "Product offer must be a number.",
     "number.min": "Product offer must be greater than or equal to 0.",
+    "number.less": "Product offer must be less than 80%.",
   }),
   description: Joi.string().required().messages({
     "string.base": "Description must be a string.",
@@ -154,8 +155,18 @@ const EditProduct = () => {
       ...prev,
       [name]: value,
     }));
-    // Clear error for the field being edited
-    if (errors[name]) {
+
+    if (name === "productOffer") {
+      const numValue = Number(value);
+      if (value !== "" && (isNaN(numValue) || numValue < 0 || numValue >= 80)) {
+        setErrors((prev) => ({
+          ...prev,
+          productOffer: "Product offer must be less than 80%.",
+        }));
+      } else {
+        setErrors((prev) => ({ ...prev, productOffer: "" }));
+      }
+    } else if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
@@ -439,7 +450,7 @@ const EditProduct = () => {
                   onChange={handleChange}
                   className="p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   min="0"
-                  max="100"
+                  max="79.99"
                 />
                 {errors.productOffer && (
                   <p className="text-red-500 text-sm mt-1">
