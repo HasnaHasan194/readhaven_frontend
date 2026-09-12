@@ -61,8 +61,15 @@ const AddCoupon = () => {
     e.preventDefault();
     setLoading(true);
     
+    // Convert numeric string fields to numbers before Joi validation
+    const dataToValidate = {
+      ...couponData,
+      discountValue: couponData.discountValue !== '' ? Number(couponData.discountValue) : couponData.discountValue,
+      minimumPurchase: couponData.minimumPurchase !== '' ? Number(couponData.minimumPurchase) : undefined,
+    };
+
     // Validate coupon data
-    const { error } = validateCoupon(couponData);
+    const { error } = validateCoupon(dataToValidate);
     if (error) {
       const validationErrors = error.details.reduce((acc, curr) => {
         acc[curr.path[0]] = curr.message;
@@ -75,14 +82,14 @@ const AddCoupon = () => {
     }
 
     try {
-      if(couponData.discountType === "percentage" && (couponData.discountValue >85 || couponData.discountValue<=0)){
+      if(couponData.discountType === "percentage" && (Number(couponData.discountValue) > 85 || Number(couponData.discountValue) <= 0)){
          const discountError = "Discount value must be greater than 0 and  less than 85%"
          toast.error(discountError)
          setCouponError(discountError)
          return
       }
 
-      if(couponData.discountType==="amount" && (couponData.discountValue>=couponData.minimumPurchase || couponData.discountValue <=0)){
+      if(couponData.discountType==="amount" && (Number(couponData.discountValue) >= Number(couponData.minimumPurchase) || Number(couponData.discountValue) <= 0)){
         const discountError = "Discount value must be greater than 0 and  less than minimum purchase"
         toast.error(discountError)
         setCouponError(discountError)
