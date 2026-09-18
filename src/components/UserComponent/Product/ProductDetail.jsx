@@ -1,5 +1,6 @@
 import React, { use, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Lens } from "@/components/ui/lens";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,10 @@ import { useCartMutation } from "@/hooks/react-query/useCartCount";
 
 const BookProductDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { user } = useSelector((state) => state.user);
+  
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -41,6 +46,12 @@ const BookProductDetails = () => {
 
   // function to add product to the cart
   const handleAddToCart = async () => {
+    if (!user) {
+      toast.error("Please login to add items to cart");
+      navigate("/login", { state: { from: location } });
+      return;
+    }
+    
     const payLoad = {
       productId: id,
     };
@@ -52,6 +63,12 @@ const BookProductDetails = () => {
 
   //handle add to wishlist
   const handleAddToWishlist = async (productId) => {
+    if (!user) {
+      toast.error("Please login to add items to wishlist");
+      navigate("/login", { state: { from: location } });
+      return;
+    }
+    
     try {
       const response = await addToWishlist(productId);
       console.log("productid", id);
@@ -154,7 +171,7 @@ const BookProductDetails = () => {
             </p>
           )}
           <p className="text-gray-700">{product.description}</p>
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Button
               onClick={handleAddToCart}
               className="bg-black text-white w-full"

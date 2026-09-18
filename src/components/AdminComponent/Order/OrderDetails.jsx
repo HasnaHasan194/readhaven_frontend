@@ -108,7 +108,7 @@ const OrderDetails = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white p-4 lg:p-8 md:ml-64 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white p-4 lg:p-8 md:ml-64 mt-16 md:mt-0 flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
       </div>
     );
@@ -116,7 +116,7 @@ const OrderDetails = () => {
 
   if (!order) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white p-4 lg:p-8 md:ml-64 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white p-4 lg:p-8 md:ml-64 mt-16 md:mt-0 flex items-center justify-center">
         <div className="text-center p-8 max-w-md bg-white rounded-xl shadow-lg">
           <Package className="h-16 w-16 mx-auto text-gray-400 mb-4" />
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
@@ -134,7 +134,7 @@ const OrderDetails = () => {
   const discount = order.subtotal + order.tax - order.totalAmount;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white p-4 lg:p-8 md:ml-64">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white p-4 lg:p-8 md:ml-64 mt-16 md:mt-0">
       <div className="mx-auto max-w-6xl">
         <Card className="shadow-lg border-t-4 border-t-blue-500 overflow-hidden">
           <CardHeader className="border-b bg-white sticky top-0 z-10">

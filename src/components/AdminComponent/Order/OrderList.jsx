@@ -159,7 +159,7 @@ export default function OrderList() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white md:ml-64">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white md:ml-64 mt-16 md:mt-0">
       <div className="p-4 lg:p-8">
         <div className="max-w-[1400px] mx-auto">
           <Card className="shadow-xl border-t-4 border-t-blue-500 rounded-md overflow-hidden">

@@ -160,7 +160,7 @@
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 p-6 ml-64">
+        <div className="min-h-screen bg-gray-50 p-6 md:ml-64 mt-16 md:mt-0">
         <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
             <div className="relative w-full md:w-auto">
             <input 

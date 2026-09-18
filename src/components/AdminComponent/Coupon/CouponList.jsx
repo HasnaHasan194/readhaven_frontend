@@ -189,7 +189,7 @@ export default function CouponList() {
   }
 
   return (
-    <div className="ml-64 max-w-[calc(100%-16rem)] mx-auto py-8 px-4">
+    <div className="md:ml-64 mt-16 md:mt-0 w-full md:max-w-[calc(100%-16rem)] mx-auto py-8 px-4">
       {/* Notification container */}
       <div className="fixed top-4 right-4 z-50 flex flex-col gap-2 max-w-sm">
         {notifications.map((notification) => (

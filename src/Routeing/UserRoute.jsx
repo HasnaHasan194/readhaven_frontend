@@ -35,17 +35,17 @@ const UserRoute = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/shop-all" element={<ShopAll />} />
         <Route path="/product-detail/:id" element={<ProductDetailPage />} />
-        <Route path="/account" element={<AccountPage />} />
-        <Route path="/address" element={<AddressListPage />} />
-        <Route path="/address/add" element={<AddressPage />} />
-        <Route path="/address/:id" element={<AddressPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/checkout" element={<CheckOutPage />} />
-        <Route path="/orders" element={<UserOrdersPage />} />
-        <Route path="/orders/:orderId" element={<OrderDetailPage />} />
-        <Route path="/orders/:orderId/item/:itemId"  element={<ItemDetailPage />} />
-        <Route path="/wallet" element={<WalletPage />} />
-        <Route path="/wishlist" element={<WishlistPage />} />
+        <Route path="/account" element={<UserPrivate><AccountPage /></UserPrivate>} />
+        <Route path="/address" element={<UserPrivate><AddressListPage /></UserPrivate>} />
+        <Route path="/address/add" element={<UserPrivate><AddressPage /></UserPrivate>} />
+        <Route path="/address/:id" element={<UserPrivate><AddressPage /></UserPrivate>} />
+        <Route path="/cart" element={<UserPrivate><CartPage /></UserPrivate>} />
+        <Route path="/checkout" element={<UserPrivate><CheckOutPage /></UserPrivate>} />
+        <Route path="/orders" element={<UserPrivate><UserOrdersPage /></UserPrivate>} />
+        <Route path="/orders/:orderId" element={<UserPrivate><OrderDetailPage /></UserPrivate>} />
+        <Route path="/orders/:orderId/item/:itemId"  element={<UserPrivate><ItemDetailPage /></UserPrivate>} />
+        <Route path="/wallet" element={<UserPrivate><WalletPage /></UserPrivate>} />
+        <Route path="/wishlist" element={<UserPrivate><WishlistPage /></UserPrivate>} />
       </Routes>
     </>
   );

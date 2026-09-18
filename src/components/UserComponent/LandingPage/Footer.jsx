@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <footer className="bg-black text-white py-8 mt-20">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h4 className="black font-semibold mb-2">Contact</h4>
+            <h4 className="font-semibold mb-2">Contact</h4>
             <div className="space-y-1">
               <p>Home</p>
               <p>Contact Us</p>

@@ -121,7 +121,7 @@ const AddCoupon = () => {
   };
   
   return (
-    <div className="min-h-screen ml-48 bg-white flex items-center justify-center overflow-hidden">
+    <div className="min-h-screen md:ml-48 mt-16 md:mt-0 bg-white flex items-center justify-center overflow-hidden">
       <div className="w-full max-w-3xl p-8">
         {notificationMessage && (
           <div className={`mb-4 p-4 rounded-lg ${notificationType === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>

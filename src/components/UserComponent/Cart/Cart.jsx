@@ -142,7 +142,7 @@ const ShoppingCart = () => {
                   <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 relative">
                     <div className="p-6">
                       <div
-                        className={`flex gap-6 ${
+                        className={`flex flex-col sm:flex-row gap-6 ${
                           item.product.isBlocked ? "opacity-50" : ""
                         }`}
                       >

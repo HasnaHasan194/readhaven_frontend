@@ -24,13 +24,13 @@ const BestSellers = () => {
 
   return (
     <div className="container mx-auto p-4">
-     <div className="flex justify-between items-center mb-6">
-        <h2 className="text-5xl ml-32 mt-14 hover:text-blue-300  font-serif">Best Sellers</h2>
+     <div className="flex justify-between items-center mb-6 px-4 md:px-0">
+        <h2 className="text-3xl md:text-5xl md:ml-32 mt-8 md:mt-14 hover:text-blue-300 font-serif">Best Sellers</h2>
         
       </div>
 
       {/* Grid of Products */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ml-32">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-0 md:ml-32">
       {products.map((product, index) => (
         <div
         key={product._id}

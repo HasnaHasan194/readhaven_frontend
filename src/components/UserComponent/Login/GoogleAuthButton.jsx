@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { FaGoogle } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { auth, googleProvider } from '@/FireBase/fireBase.js'
 import { signInWithPopup } from 'firebase/auth';
 import { useDispatch } from "react-redux";
@@ -13,6 +13,7 @@ import "antd/dist/reset.css";
 const GoogleAuthButton = () => {
 
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const handleGoogleSignIn = async()=>{
@@ -21,7 +22,8 @@ const GoogleAuthButton = () => {
        const response = await loginWithGoogle(result?.user.displayName,result?.user.email);
         if(response.success)
         {
-          navigate('/')
+          const from = location.state?.from || '/'
+          navigate(from, { replace: true })
         }
         message.success(response.message)
         dispatch(UserLogin({name:result?.user.displayName,email:result?.user.email}))

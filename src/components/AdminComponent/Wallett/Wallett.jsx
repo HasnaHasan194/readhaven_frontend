@@ -52,7 +52,7 @@ const WalletManagement = () => {
   const totalPages = Math.ceil(transactions.length / itemsPerPage);
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl ml-64">
+    <div className="container mx-auto px-4 py-8 max-w-7xl md:ml-64 mt-16 md:mt-0">
       <div className="bg-white shadow-2xl rounded-2xl overflow-hidden">
         <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 flex items-center justify-between">
           <div className="flex items-center space-x-4">

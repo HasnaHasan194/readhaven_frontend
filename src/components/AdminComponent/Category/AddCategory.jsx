@@ -4,7 +4,7 @@ import AddCategoryModal from "@/components/modal/AddCategoryModal.jsx";
 
 const AddCategory = () => {
   return (
-    <div className="flex justify-center min-h-screen bg-gray-100 p-6 ml-56">
+    <div className="flex justify-center min-h-screen bg-gray-100 p-6 md:ml-56 mt-16 md:mt-0">
       <div className="w-full max-w-4xl mx-auto">
         
         <CategoryTable />

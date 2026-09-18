@@ -323,12 +323,9 @@ const PersonalInformation = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
-      {/* Sidebar is assumed to be in a separate component */}
-      <div className="flex-shrink-0 w-64">{/* Sidebar Component Here */}</div>
-
+    <div className="bg-gray-50 p-2 md:p-6 rounded-lg">
       {/* Main Content */}
-      <div className="flex-grow p-6 overflow-y-auto">
+      <div className="w-full">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <User size={24} className="text-gray-700" />

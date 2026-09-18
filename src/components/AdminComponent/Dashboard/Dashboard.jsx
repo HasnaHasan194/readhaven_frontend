@@ -28,7 +28,7 @@ const Dashboard = () => {
   }, [filter]);
 
   return (
-    <div className="p-4 md:p-8 md:ml-10 pt-20 min-h-screen">
+    <div className="p-4 md:p-8 md:ml-64 mt-16 md:mt-0 pt-20 min-h-screen">
 
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>

@@ -39,7 +39,7 @@ const UserSideBar = () => {
   
 
   return (
-    <div className="w-64 h-screen bg-white rounded-lg shadow-lg p-6 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+    <div className="w-full md:w-64 h-auto md:h-screen bg-white rounded-lg shadow-lg p-4 md:p-6 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
       {/* User Profile Header */}
       <div className="flex items-center gap-4 p-4 mb-8 border-b hover:bg-gray-50 rounded-md transition-all duration-300 cursor-pointer">
         <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white font-semibold 

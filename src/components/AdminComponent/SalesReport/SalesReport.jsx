@@ -216,7 +216,7 @@ export default function BookSalesReport() {
   };
 
   return (
-    <div className="p-4 md:p-6 md:ml-64 lg:ml-64 min-h-screen bg-gray-50">
+    <div className="p-4 md:p-6 md:ml-64 lg:ml-64 mt-16 md:mt-0 min-h-screen bg-gray-50">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>

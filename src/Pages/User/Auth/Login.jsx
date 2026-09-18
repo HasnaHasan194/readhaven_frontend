@@ -176,7 +176,7 @@
 // }
 
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { Eye, EyeOff } from "lucide-react"
 // Remove antd imports
@@ -194,6 +194,7 @@ import AuthLayout from "@/Pages/User/Auth/AuthLayout"
 
 export default function LoginPage() {
   const navigate = useNavigate()
+  const location = useLocation()
   const dispatch = useDispatch()
 
   const [formData, setFormData] = useState({
@@ -243,7 +244,8 @@ export default function LoginPage() {
 
       dispatch(UserLogin({ name: response?.userName }))
 
-      navigate("/")
+      const from = location.state?.from || "/"
+      navigate(from, { replace: true })
     } catch (error) {
       setServerError(error?.message || "Invalid credentials")
       // Replace antd message with console or alert

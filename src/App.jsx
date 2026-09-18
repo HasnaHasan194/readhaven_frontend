@@ -3,6 +3,7 @@ import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import UserRoute from "./Routeing/UserRoute.jsx";
 import { ToastContainer } from "react-toastify";
 import AdminRoute from "./Routeing/Adminroute.jsx";
+import PageLoader from "./components/PageLoader/PageLoader.jsx";
 
 function App() {
 
@@ -11,10 +12,12 @@ function App() {
     <div>
       <ToastContainer/>
       <Router>
-        <Routes>
-          <Route path="/*" element={<UserRoute/>}/> 
-          <Route path="/admin/*" element={<AdminRoute/>}/>       
-        </Routes>
+        <PageLoader>
+          <Routes>
+            <Route path="/*" element={<UserRoute/>}/> 
+            <Route path="/admin/*" element={<AdminRoute/>}/>       
+          </Routes>
+        </PageLoader>
       </Router>       
     </div>
     

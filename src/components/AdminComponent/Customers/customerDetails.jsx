@@ -54,7 +54,7 @@ const CustomerDetails = () => {
     return (
         <div className="flex">
             <Sidebar />
-            <div className="w-[calc(100%-16rem)] min-h-screen bg-gray-100 p-8 ml-64 transition-all">
+            <div className="w-full md:w-[calc(100%-16rem)] min-h-screen bg-gray-100 p-8 md:ml-64 mt-16 md:mt-0 transition-all">
                 <div className="max-w-7xl mx-auto bg-white shadow-lg rounded-lg p-8">
                     <h2 className="text-4xl font-bold mb-8 text-center">Customers</h2>
 
