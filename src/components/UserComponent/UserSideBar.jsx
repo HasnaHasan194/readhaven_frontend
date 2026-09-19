@@ -39,9 +39,9 @@ const UserSideBar = () => {
   
 
   return (
-    <div className="w-full md:w-64 h-auto md:h-screen bg-white rounded-lg shadow-lg p-4 md:p-6 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+    <div className="w-full md:w-64 h-auto md:h-screen bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] md:shadow-lg p-2 md:p-6 overflow-x-auto md:overflow-y-auto scrollbar-none md:scrollbar-thin md:scrollbar-thumb-gray-400 md:scrollbar-track-gray-200">
       {/* User Profile Header */}
-      <div className="flex items-center gap-4 p-4 mb-8 border-b hover:bg-gray-50 rounded-md transition-all duration-300 cursor-pointer">
+      <div className="hidden md:flex items-center gap-4 p-4 mb-8 border-b hover:bg-gray-50 rounded-md transition-all duration-300 cursor-pointer">
         <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white font-semibold 
                     transform transition-transform duration-300 hover:scale-110">
           {name?.charAt(0).toUpperCase() || "U"}
@@ -51,9 +51,9 @@ const UserSideBar = () => {
 
       {/* Navigation Menu */}
       <nav>
-        <ul className="space-y-8">
+        <ul className="flex flex-row md:flex-col space-x-2 md:space-x-0 md:space-y-8">
           {menuItems.map((item, index) => (
-            <li key={index}>
+            <li key={index} className="flex-shrink-0">
      <button 
         onClick={() => {
           if (item.isLogout) {
@@ -62,23 +62,23 @@ const UserSideBar = () => {
             handleNavigation(item.label, item.path);
           }
         }}
-        className={`w-full flex items-center justify-between p-4 rounded-md transition-all duration-300
+        className={`w-full flex items-center justify-center md:justify-between p-3 md:p-4 rounded-md transition-all duration-300
           ${activeRoute === item.label 
             ? 'bg-black text-white shadow-md transform scale-105' 
             : item.isLogout
               ? 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:shadow-md hover:scale-102'
               : 'text-gray-700 hover:bg-gray-100 hover:shadow-md hover:scale-102'}`}
       >
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col md:flex-row items-center gap-1 md:gap-4">
           <div className={`transform transition-transform duration-300 
                   ${activeRoute === item.label ? 'scale-110' : 'group-hover:scale-110'}`}>
             {item.icon}
           </div>
-          <span className="font-medium text-base">{item.label}</span>
+          <span className="font-medium text-[10px] md:text-base">{item.label}</span>
         </div>
         <ChevronRight 
           size={18} 
-          className={`transition-transform duration-300
+          className={`hidden md:block transition-transform duration-300
                   ${activeRoute === item.label ? 'rotate-90' : ''}`}
         />
       </button>
