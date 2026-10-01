@@ -162,12 +162,21 @@ const BookProductCard = ({
         <button 
           onClick={(e)=>{
             e.stopPropagation();
-             handleAddToCart()
+            if (availability !== 'Out of Stock') {
+               handleAddToCart();
+            } else {
+               toast.error("Product is out of stock");
+            }
           }}
-          className="w-full py-2.5 rounded-full bg-gradient-to-r from-brown-100 to-brown-200 text-brown-700 hover:from-brown-200 hover:to-brown-300 transition-all duration-300 flex items-center justify-center space-x-2 shadow-sm hover:shadow-md active:scale-95"
+          disabled={availability === 'Out of Stock'}
+          className={`w-full py-2.5 rounded-full bg-gradient-to-r ${
+            availability === 'Out of Stock' 
+              ? 'from-gray-300 to-gray-400 text-gray-500 cursor-not-allowed opacity-70' 
+              : 'from-brown-100 to-brown-200 text-brown-700 hover:from-brown-200 hover:to-brown-300 shadow-sm hover:shadow-md active:scale-95'
+          } transition-all duration-300 flex items-center justify-center space-x-2`}
         >
-          <ShoppingCart size={20} className="text-brown-600" />
-          <span className="font-semibold">Add to Cart</span>
+          <ShoppingCart size={20} className={availability === 'Out of Stock' ? 'text-gray-500' : 'text-brown-600'} />
+          <span className="font-semibold">{availability === 'Out of Stock' ? 'Out of Stock' : 'Add to Cart'}</span>
         </button>
       </div>
     </div>

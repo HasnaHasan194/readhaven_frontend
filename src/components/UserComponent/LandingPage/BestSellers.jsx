@@ -46,7 +46,7 @@ const BestSellers = () => {
           salePrice={product.salePrice}
           image={product.productImages[0]}
           author={product.author || "Unknown"}
-          availability={product.availableQuantity}
+          availability={product.availableQuantity > 0 ? "In Stock" : "Out of Stock"}
         
         />
           </div>

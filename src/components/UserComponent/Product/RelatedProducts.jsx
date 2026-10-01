@@ -66,7 +66,7 @@ const RelatedProduct = ({ categoryId, currentProductId }) => {
               salePrice={product.salePrice}
               image={product.productImages[0]}
               author={product.writer || "Unknown"}
-              availability={product.availableQuantity}
+              availability={product.availableQuantity > 0 ? "In Stock" : "Out of Stock"}
             />
           </div>
         ))}

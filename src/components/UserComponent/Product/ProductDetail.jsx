@@ -52,6 +52,11 @@ const BookProductDetails = () => {
       return;
     }
     
+    if (product.availableQuantity <= 0) {
+      toast.error("Product is out of stock");
+      return;
+    }
+    
     const payLoad = {
       productId: id,
     };
@@ -174,9 +179,10 @@ const BookProductDetails = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <Button
               onClick={handleAddToCart}
-              className="bg-black text-white w-full"
+              disabled={product.availableQuantity <= 0}
+              className={product.availableQuantity <= 0 ? "bg-gray-400 text-white w-full cursor-not-allowed" : "bg-black text-white w-full"}
             >
-              Add to Cart
+              {product.availableQuantity <= 0 ? "Out of Stock" : "Add to Cart"}
             </Button>
             <Button
               onClick={() => handleAddToWishlist(product._id)}
