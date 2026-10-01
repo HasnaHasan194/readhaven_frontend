@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useRazorpay } from "react-razorpay";
 
-export function PaymentComponent({handlePlaceOrder, total, }) {
+export function PaymentComponent({handlePlaceOrder, total, validatePayment}) {
   const handleSubmit = async () => {
+    if (validatePayment && !validatePayment()) {
+      return;
+    }
     var options = {
       key: "rzp_test_ZULLnbg25QCQyN",
       key_secret: "6UC6lmDY2scOmHXz1kbeMFXe",

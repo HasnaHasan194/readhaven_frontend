@@ -277,6 +277,16 @@ export default function CheckOut() {
               <PaymentComponent
                 total={total}
                 handlePlaceOrder={handlePlaceOrder}
+                validatePayment={() => {
+                  const selectedAddressObj = addresses.find(
+                    (addr) => addr._id === selectedAddress
+                  );
+                  if (!selectedAddressObj) {
+                    toast.error("address not selected so payment will fail");
+                    return false;
+                  }
+                  return true;
+                }}
               />
             ) : (
               <Button onClick={handlePlaceOrder} className="w-full" size="lg">
