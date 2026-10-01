@@ -160,7 +160,7 @@ const AddressForm = ({ name }) => {
                 errors={errors}
               />
               <InputField
-                label="Landmark"
+                label="Landmark (Optional)"
                 name="landmark"
                 value={formData.landmark}
                 onChange={handleChange}

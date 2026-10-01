@@ -178,10 +178,10 @@ import {
         {errors.buildingname && <p className="text-red-500 text-xs mt-1">{errors.buildingname}</p>}
       </div>
       <div>
-        <Label htmlFor="landmark" className="text-sm font-medium">Landmark</Label>
+        <Label htmlFor="landmark" className="text-sm font-medium">Landmark (Optional)</Label>
         <Input 
           id="landmark"
-          placeholder="Landmark" 
+          placeholder="Landmark (Optional)" 
           name="landmark" 
           value={newAddress.landmark} 
           onChange={handleNewAddressChange} 
