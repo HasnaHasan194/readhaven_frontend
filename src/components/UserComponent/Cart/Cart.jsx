@@ -32,6 +32,14 @@ const ShoppingCart = () => {
   // update quantity by api call
   const updateQuantity = async (itemId, change) => {
     try {
+      const currentItem = cartItems.find(item => item._id === itemId);
+      if (currentItem && change > 0) {
+        if (currentItem.quantity + change > (currentItem.product?.availableQuantity || 0)) {
+          toast.error(`Only ${currentItem.product?.availableQuantity || 0} units of ${currentItem.product?.name} available in stock.`);
+          return;
+        }
+      }
+
       const response = await updateCartItemQuantity(itemId, change);
       setCartItems((prevItems) =>
         prevItems.map((item) =>
@@ -74,6 +82,24 @@ const ShoppingCart = () => {
       // Add the calculated amount to the total
       return total + price * item.quantity;
     }, 0);
+  };
+
+  const handleProceedToCheckout = () => {
+    // Check if any item in the cart exceeds available stock
+    const outOfStockItem = cartItems.find(
+      (item) => item.quantity > (item.product?.availableQuantity || 0)
+    );
+
+    if (outOfStockItem) {
+      toast.error(
+        `${outOfStockItem.product.name} exceeds available stock. Only ${
+          outOfStockItem.product.availableQuantity || 0
+        } units available.`
+      );
+      return;
+    }
+
+    navigate("/checkout");
   };
 
   if (isLoading) {
@@ -172,6 +198,12 @@ const ShoppingCart = () => {
                                   Unavailable
                                 </p>
                               )}
+                              {/* Display out of stock warning inline if needed */}
+                              {!item.product.isBlocked && item.quantity > (item.product.availableQuantity || 0) && (
+                                <p className="text-sm font-medium text-red-500 mt-1">
+                                  Out of stock (only {item.product.availableQuantity || 0} left)
+                                </p>
+                              )}
                             </div>
                             <div className="text-right">
                               <p className="text-lg font-semibold text-gray-900">
@@ -236,7 +268,7 @@ const ShoppingCart = () => {
                       </span>
                     </div>
                     <Button
-                      onClick={() => navigate("/checkout")}
+                      onClick={handleProceedToCheckout}
                       className="w-full mt-6 bg-black hover:bg-gray-800 text-white h-12 text-lg"
                       disabled={cartItems.some(
                         (item) => item.product.isBlocked

@@ -63,6 +63,7 @@ const RelatedProduct = ({ categoryId, currentProductId }) => {
               name={product.name}
               rating={product.rating || 4.5}
               price={product.regularPrice}
+              salePrice={product.salePrice}
               image={product.productImages[0]}
               author={product.writer || "Unknown"}
               availability={product.availableQuantity}

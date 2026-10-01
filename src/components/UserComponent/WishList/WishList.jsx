@@ -184,9 +184,20 @@ const Wishlist = () => {
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="text-2xl font-bold text-indigo-700">
-                            ₹{item.productId.regularPrice || 0}
-                          </p>
+                          {item.productId.salePrice && item.productId.salePrice < item.productId.regularPrice ? (
+                            <>
+                              <p className="text-2xl font-bold text-indigo-700">
+                                ₹{item.productId.salePrice}
+                              </p>
+                              <p className="text-sm text-gray-500 line-through">
+                                ₹{item.productId.regularPrice}
+                              </p>
+                            </>
+                          ) : (
+                            <p className="text-2xl font-bold text-indigo-700">
+                              ₹{item.productId.regularPrice || 0}
+                            </p>
+                          )}
                         </div>
                       </div>
                     </div>
